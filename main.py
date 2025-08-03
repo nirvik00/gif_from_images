@@ -19,36 +19,38 @@ for tif in tif_files:
     if min_h is None or h < min_h:
         min_h = h
 
-# # Crop to min dimensions
-# for tif in tif_files:
-#     path = os.path.join(tif_folder, tif)
-#     img = cv2.imread(path)
-#     h, w = img.shape[:2]
+print(f'shape: {min_w}, {min_h}')
+# Crop to min dimensions
+for tif in tif_files:
+    path = os.path.join(tif_folder, tif)
+    img = cv2.imread(path)
+    h, w = img.shape[:2]
 
-#     # Center crop
-#     top = (h - min_h) // 2
-#     left = (w - min_h) // 2
-#     cropped = img[top:top+min_h, left:left+min_h]
+    # Center crop
+    top = (h - min_h) // 2
+    left = (w - min_w) // 2
+    cropped = img[top:top+min_h, left:left+min_w]
 
-#     img_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
-#     frames.append(img_rgb)
+    img_rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+    print(img_rgb.shape)
+    frames.append(img_rgb)
 
-# # Save as GIF
-# imageio.mimsave(output_gif, frames, duration=0.2)
+# Save as GIF
+imageio.mimsave(output_gif, frames, duration=2000, loop=0)
 
 
-with imageio.get_writer(output_gif, mode='I', duration=105.0, loop=0) as writer:
-    for tif in tif_files:
-        path = os.path.join(tif_folder, tif)
-        img = cv2.imread(path)
+# with imageio.get_writer(output_gif, mode='I', duration=105.0, loop=0) as writer:
+#     for tif in tif_files:
+#         path = os.path.join(tif_folder, tif)
+#         img = cv2.imread(path)
 
-        # Center crop to min_w x min_h
-        h, w = img.shape[:2]
-        top = (h - min_h) // 2
-        left = (w - min_w) // 2
-        cropped = img[top:top+min_h, left:left+min_w]
+#         # Center crop to min_w x min_h
+#         h, w = img.shape[:2]
+#         top = (h - min_h) // 2
+#         left = (w - min_w) // 2
+#         cropped = img[top:top+min_h, left:left+min_w]
 
-        # BGR to RGB
-        rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+#         # BGR to RGB
+#         rgb = cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
 
-        writer.append_data(rgb)
+#         writer.append_data(rgb)
