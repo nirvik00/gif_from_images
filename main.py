@@ -3,7 +3,8 @@ import imageio
 import os
 
 # Folder with TIFF images
-tif_folder = 'C:\\Users\\nsdev\\code\\biology\\p002\\data'
+# tif_folder = 'C:\\Users\\nsdev\\code\\biology\\p002\\data'
+tif_folder= "C:\\Users\\nsdev\\code\\biology\\p001\\output"
 output_gif = 'output.gif'
 tif_files = sorted([f for f in os.listdir(tif_folder) if f.lower().endswith('.png')])
 frames = []
@@ -36,7 +37,7 @@ for tif in tif_files:
     frames.append(img_rgb)
 
 # Save as GIF
-imageio.mimsave(output_gif, frames, duration=2000, loop=0)
+imageio.mimsave(output_gif, frames, duration=200, loop=0)
 
 
 # with imageio.get_writer(output_gif, mode='I', duration=105.0, loop=0) as writer:
