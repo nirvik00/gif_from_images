@@ -7,6 +7,7 @@ import matplotlib.cm as cm
 
 def read_gen_gif():
     #### input czi file path + name here like so
+    # aboslute path or relative path is ok. absolute is shown
     input_czi_filename = "C:\\Users\\nsdev\\code\\biology\\p002\data\\newCZI_z=16_ch=3.czi" 
     #
     # files and gif animation stored here
